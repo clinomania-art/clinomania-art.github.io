@@ -1,0 +1,16 @@
+---
+---
+[
+  {% assign image_files = site.static_files | where_exp: "item", "item.path contains '/assets/'" %}
+  {% for file in image_files %}
+    {% if file.extname == '.png' or file.extname == '.jpg' or file.extname == '.jpeg' or file.extname == '.svg' or file.extname == '.gif' %}
+    {
+      "id": "{{ forloop.index }}",
+      "title": "{{ file.basename }}",
+      "filename": "{{ file.name }}",
+      "path": "{{ file.path }}",
+      "tags": ["일러스트"]
+    }{% unless forloop.last %},{% endunless %}
+    {% endif %}
+  {% endfor %}
+]
